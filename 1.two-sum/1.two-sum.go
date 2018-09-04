@@ -24,6 +24,13 @@
  */
 package main
 
+import "fmt"
+
+func main() {
+	a := []int{2, 7, 6, 11, 15}
+	twoSum2(a, 9)
+}
+
 func twoSum(nums []int, target int) []int {
 	m := make(map[int]int, len(nums))
 
@@ -36,4 +43,23 @@ func twoSum(nums []int, target int) []int {
 	}
 
 	return nil
+}
+
+func twoSum2(nums []int, target int) {
+	n := make(map[int]int, len(nums))
+	// 记录映射关系
+	for k, v := range nums {
+		n[v] = k
+	}
+	// 遍历查找,记录位置
+	a := make([]int, 0)
+	// a == []int{0, 1, 2, 3}
+	for i := 0; i < len(nums); i++ {
+		search := target - nums[i]
+		if index, ok := n[search]; ok {
+			a = append(a, index)
+		}
+	}
+	fmt.Println(a)
+
 }
